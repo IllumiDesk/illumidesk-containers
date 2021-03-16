@@ -38,12 +38,6 @@ def docker_client() -> docker.client:
     return docker.from_env()
 
 
-@pytest.fixture(scope="session")
-def image_name() -> str:
-    """Image name to test"""
-    return os.getenv("TEST_IMAGE", "illumidesk/base-notebook")
-
-
 class TrackedContainer:
     """Wrapper that collects docker container configuration and delays
     container creation/execution.
@@ -107,6 +101,6 @@ def container(docker_client, image_name) -> None:
     Yields the container instance and kills it when the caller is done with it.
     """
     container = TrackedContainer(
-        docker_client, image_name, detach=True, ports={"8888/tcp": 8888}
+        docker_client, image_name, detach=True, ports={"8000/tcp": 8000}
     )
     yield container
