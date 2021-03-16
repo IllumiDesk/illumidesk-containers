@@ -2,8 +2,8 @@ ARG BASE_IMAGE=python:3.8
 FROM "${BASE_IMAGE}"
 
 RUN apt-get update \
- && apt-get upgrade -y \
- && apt-get install unzip -y
+ && apt-get install unzip -y \
+ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /tmp
 
@@ -13,7 +13,7 @@ RUN python -m pip install --upgrade pip \
  && pip install -r /tmp/requirements.txt
 
 # illumidesk package release
-ARG ILLUMIDESK_VERSION=1.1.1
+ARG ILLUMIDESK_VERSION=2.0.0
 
 # Application directory
 ENV APP_DIR=/illumidesk/app
@@ -26,7 +26,7 @@ RUN wget "https://github.com/IllumiDesk/illumidesk/archive/v${ILLUMIDESK_VERSION
  && unzip "/tmp/v${ILLUMIDESK_VERSION}.zip"
 RUN cp -r "/tmp/illumidesk-${ILLUMIDESK_VERSION}/src/grader-service/grader-service/." "${APP_DIR}/."
 
-WORKDIR /illumidesk
+WORKDIR "${APP_DIR}"
 
 EXPOSE 8000
 
