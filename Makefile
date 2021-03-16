@@ -12,7 +12,7 @@ VENV_ACTIVATE=. ${VENV_BIN}/activate
 PYTHON=${VENV_BIN}/python3
 
 # Need to list the images in build dependency order
-ALL_STACKS:=grader-setup \
+ALL_STACKS:=grader-setup-service \
 	jupyterhub \
 	keycloak \
 	nginx

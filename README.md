@@ -35,13 +35,13 @@ Use the dev version to quickly test different configuration options. Use the def
 3. Build:
 
 ```bash
-docker-compose -f docker-compose-dev.yaml build --no-cache
+docker-compose build --no-cache
 ```
 
 4. Start:
 
 ```bash
-docker-compose -f docker-compose-dev.yaml up -d
+docker-compose up -d
 ```
 
 3. (Optional) Edit configuration files and restart service (container)
@@ -49,13 +49,13 @@ docker-compose -f docker-compose-dev.yaml up -d
 - Edit the `nginx/nginx.conf` configuration file to update Nginx's configuration. Then restart the `nginx` container with:
 
 ```bash
-docker-compose -f docker-compose-dev.yaml restart nginx
+docker-compose restart nginx
 ```
 
 - Edit the `jupyterhub/jupyterhub_config.py` configuration file to update JupyterHub's configuration. Then restart the `jupyterhub` container with:
 
 ```bash
-docker-compose -f docker-compose-dev.yaml restart jupyterhub
+docker-compose restart jupyterhub
 ```
 
 ### Custom Options
