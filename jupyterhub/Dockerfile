@@ -29,6 +29,7 @@ RUN python3 -m pip install .
 
 WORKDIR /srv/jupyterhub/
 
+COPY illumidesk-80.png /srv/jupyterhub/illumidesk-80.png
 COPY jupyterhub_config.py /srv/jupyterhub/
 COPY wait-for-postgres.sh /srv/jupyterhub/
 
