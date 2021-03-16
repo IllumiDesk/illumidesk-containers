@@ -16,7 +16,7 @@ RUN python -m pip install --upgrade pip \
 ARG ILLUMIDESK_VERSION=2.0.0
 
 # Application directory
-ENV APP_DIR=/illumidesk/app
+ENV APP_DIR=/illumidesk
 
 # app folder
 RUN mkdir -p "${APP_DIR}"
