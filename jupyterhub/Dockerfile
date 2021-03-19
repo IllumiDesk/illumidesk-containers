@@ -10,7 +10,8 @@ RUN apt-get update \
 
 WORKDIR /tmp
 RUN wget https://configs.illumidesk.com/images/illumidesk-80.png \
- && cp -r /tmp/illumidesk-80.png /usr/local/share/jupyterhub/static/images/
+ && cp -r /tmp/illumidesk-80.png /usr/local/share/jupyterhub/static/images/ \
+ && chown "${NB_UID}" /usr/local/share/jupyterhub/static/images/illumidesk-80.png
 
 USER "${NB_UID}"
 
