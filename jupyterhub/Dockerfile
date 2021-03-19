@@ -8,6 +8,9 @@ RUN apt-get update \
     wget \
  && rm -rf /var/lib/apt/lists/*
 
+RUN wget https://configs.illumidesk.com/images/illumidesk-80.png \
+ && cp -r /tmp/illumidesk-80.png /usr/local/share/jupyterhub/static/images/
+
 USER "${NB_UID}"
 
 ENV PATH="/home/${NB_USER}/.local/bin:${PATH}"
