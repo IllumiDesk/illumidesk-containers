@@ -19,12 +19,12 @@ ARG ILLUMIDESK_VERSION=2.0.0
 ENV APP_DIR=/illumidesk
 
 # app folder
-RUN mkdir -p "${APP_DIR}"
+RUN mkdir -p "${APP_DIR}/app"
 
 # fetch and unpack illumidesk package
 RUN wget "https://github.com/IllumiDesk/illumidesk/archive/v${ILLUMIDESK_VERSION}.zip" \
  && unzip "/tmp/v${ILLUMIDESK_VERSION}.zip"
-RUN cp -r "/tmp/illumidesk-${ILLUMIDESK_VERSION}/src/grader-service/grader-service/." "${APP_DIR}/."
+RUN cp -r "/tmp/illumidesk-${ILLUMIDESK_VERSION}/src/grader-service/grader-service/." "${APP_DIR}/app/."
 
 WORKDIR "${APP_DIR}"
 

@@ -8,6 +8,7 @@ RUN apt-get update \
     wget \
  && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /tmp
 RUN wget https://configs.illumidesk.com/images/illumidesk-80.png \
  && cp -r /tmp/illumidesk-80.png /usr/local/share/jupyterhub/static/images/
 
