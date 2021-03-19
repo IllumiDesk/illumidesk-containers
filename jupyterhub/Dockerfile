@@ -33,6 +33,7 @@ RUN python3 -m pip install .
 
 WORKDIR /srv/jupyterhub/
 
+# This config is overwitten with k8s setup
 COPY jupyterhub_config.py /srv/jupyterhub/
 COPY wait-for-postgres.sh /srv/jupyterhub/
 
