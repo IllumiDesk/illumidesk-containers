@@ -10,7 +10,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 @pytest.mark.parametrize(
-    'language,version_output', [('python', ['Python', '3.8.8\n']),],
+    'language,version_output', [('python', ['Python', '3.8.9\n']),],
 )
 def test_python_version(language, version_output):
     """Ensure that the language is available in the container's PATH and that
