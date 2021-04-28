@@ -34,3 +34,9 @@ COPY jupyterhub_config.py /srv/jupyterhub/
 COPY wait-for-postgres.sh /srv/jupyterhub/
 
 CMD ["./wait-for-postgres.sh", "jupyterhub", "--config", "/srv/jupyterhub/jupyterhub_config.py"]
+
+USER root
+
+COPY illumidesk-80.png /usr/local/share/jupyterhub/static/images/illumidesk-80.png
+
+USER "${NB_UID}"
