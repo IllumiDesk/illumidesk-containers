@@ -12,8 +12,6 @@ services:
 jobs:
   include:
     - stage: build-test-push
-      before_install:
-        - bash scripts/before_install.sh
       install:
         - pip install --upgrade pip
         - make venv

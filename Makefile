@@ -58,6 +58,7 @@ lint/%: ARGS?=--config .hadolint.yml
 lint/%: ## lint the dockerfile(s) for a stack
 	@echo "Linting Dockerfiles with Hadolint in $(notdir $@)..."
 	@git ls-files --exclude='Dockerfile*' --ignored $(notdir $@) | grep -v ppc64 | xargs -L 1 $(HADOLINT) $(ARGS)
+	@docker run --rm -i -v $(pwd)/.hadolint.yaml:/root/.config/hadolint.yaml hadolint/hadolint < $(notdir $@)/Dockerfile
 	@echo "Linting with Hadolint done!"
 	@echo "Linting tests with flake8 in in $(notdir $@)..."
 	${VENV_BIN}/flake8 $(notdir $@)

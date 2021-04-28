@@ -4,28 +4,27 @@ FROM "${BASE_IMAGE}"
 USER root
 RUN apt-get update \
  && apt-get install -y \
-    unzip \
-    wget \
+    unzip=6.0-25ubuntu1 \
+    wget=1.20.3-1ubuntu1 --no-install-recommends \
  && rm -rf /var/lib/apt/lists/*
 
 USER "${NB_UID}"
 
 ENV PATH="/home/${NB_USER}/.local/bin:${PATH}"
 
-# illumidesk package release
 ARG ILLUMIDESK_VERSION=3.0.0
 
 # ensure pip is up to date
-RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --no-cache-dir --upgrade pip
 
 COPY requirements.txt /tmp/
-RUN pip install -r /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 WORKDIR /tmp
-RUN wget "https://github.com/IllumiDesk/illumidesk/archive/v${ILLUMIDESK_VERSION}.zip" \
+RUN wget --progress=dot:giga "https://github.com/IllumiDesk/illumidesk/archive/v${ILLUMIDESK_VERSION}.zip" \
  && unzip "/tmp/v${ILLUMIDESK_VERSION}.zip"
 WORKDIR "/tmp/illumidesk-${ILLUMIDESK_VERSION}/src/illumidesk/"
-RUN python3 -m pip install .
+RUN python3 -m pip install --no-cache-dir .
 
 WORKDIR /srv/jupyterhub/
 
