@@ -15,14 +15,10 @@ For docker-compose based setup:
 
 ## Docker-Compose
 
-This setup has two versions of Docker Compose:
-
-- Dev (`docker-compose-dev.yaml`)
-  - Mounts `nginx` and `jupyterhub` configuration files from the local file system
-  - Builds the docker images from Dockerfiles located in sub-directories.
+This setup has one version of Docker Compose:
 
 - Default (`docker-compose.yaml`)
-  - Pulls images located in DockerHub registry
+  - Builds images located in this repo
 
 Use the dev version to quickly test different configuration options. Use the default version to launch services with a sensible set of defaults.
 
@@ -38,18 +34,12 @@ Use the dev version to quickly test different configuration options. Use the def
 docker-compose build --no-cache
 ```
 
+> **NOTE**: the `illumidesk/jupyterhub:chp` image that runs with the `docker-compose` version includes the `CHP - Configurable HTTP Proxy`. The standard version of the `illumidesk/jupyterhub:latest` is configured for Kubernetes and therefore will not run with a standard `docker` image.
+
 4. Start:
 
 ```bash
 docker-compose up -d
-```
-
-3. (Optional) Edit configuration files and restart service (container)
-
-- Edit the `nginx/nginx.conf` configuration file to update Nginx's configuration. Then restart the `nginx` container with:
-
-```bash
-docker-compose restart nginx
 ```
 
 - Edit the `jupyterhub/jupyterhub_config.py` configuration file to update JupyterHub's configuration. Then restart the `jupyterhub` container with:

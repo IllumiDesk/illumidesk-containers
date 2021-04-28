@@ -1,0 +1,10 @@
+FROM illumidesk/jupyterhub:latest
+
+USER root
+
+RUN apt-get update \
+ && apt-get install npm -y
+
+USER "${NB_UID}"
+
+RUN npm install npm install -g configurable-http-proxy

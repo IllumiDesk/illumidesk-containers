@@ -29,21 +29,20 @@ c.JupyterHub.tornado_settings = {
 c.JupyterHub.upgrade_db = True
 
 # JupyterHub Postgres connection URI
-c.JupyterHub.db_url = 'postgresql://{postgres_user}:{postgres_password}@{postgres_host}:{postgres_port}/{postgres_db}'.format(
-    postgres_user = os.environ.get('POSTGRES_USER') or 'jupyterhub',
-    postgres_password = os.environ.get('POSTGRES_PASSWORD') or 'password',
-    postgres_host = os.environ.get('POSTGRES_HOST') or 'postgres-hub',
-    postgres_port = int(os.environ.get('POSTGRES_PORT') or '5432'),
-    postgres_db = os.environ.get('POSTGRES_DB') or 'jupyterhub',
-)
+postgres_user = os.environ.get('POSTGRES_USER') or 'jupyterhub'
+postgres_password = os.environ.get('POSTGRES_PASSWORD') or 'password'
+postgres_host = os.environ.get('POSTGRES_HOST') or 'postgres'
+postgres_port = os.environ.get('POSTGRES_PORT') or '5432'
+postgres_db = os.environ.get('POSTGRES_DB') or 'jupyterhub'
+c.JupyterHub.db_url = f'postgres://{postgres_user}:{postgres_password}/{postgres_host}:{postgres_port}/{postgres_db}'
 
 # Set the authenticator. Uncomment the GenericOAuthenticator to test authentication with OIDC/OAuth2.
 c.JupyterHub.authenticator_class = 'jupyterhub.auth.DummyAuthenticator'
 # c.JupyterHub.authenticator_class = GenericOAuthenticator
 
-c.Authenticator.admin_users = {'admin'}
+c.Authenticator.admin_users = {'foo'}
 c.Authenticator.auto_login = True
-c.Authenticator.allowed_users = {'greg', 'abhi', 'greg@example.com'}
+c.Authenticator.allowed_users = {'foo', 'bizz', 'bazz'}
 
 # Verify TLS certificates.
 if os.environ.get('OAUTH2_TLS_VERIFY') == 'True':
