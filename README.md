@@ -15,19 +15,19 @@ For docker-compose based setup:
 
 ## Docker-Compose
 
-This setup has one version of Docker Compose:
-
-- Default (`docker-compose.yaml`)
-  - Builds images located in this repo
-
-Use the dev version to quickly test different configuration options. Use the default version to launch services with a sensible set of defaults.
+This setup uses docker-compose to launch a JupyterHub instance configure with Postgres. This helps validates custom configurations and assets, such as custom html templates.
 
 ## Build, Launch, Test
 
-### Define Environment Variables
+Install requirements:
 
-1. Copy `.env.example` to `.env`
-2. Update values in `.env`. Sensible defaults are provided to enable basic launches.
+1. Install [docker-compose](https://docs.docker.com/compose/install/)
+
+2. Define Environment Variables
+
+- Copy `.env.example` to `.env`
+- Update values in `.env`. Sensible defaults are provided to enable basic launches.
+
 3. Build:
 
 ```bash
@@ -48,11 +48,15 @@ docker-compose up -d
 docker-compose restart jupyterhub
 ```
 
-### Custom Options
+## Custom Options
 
 1. Update the `.env` file with your values:
     - `JUPYTERHUB_HOST`: the external facing JupyterHub host URL. Defaults to `http://localhost:8000`.
     - `JUPYTERHUB_CRYPT_KEY`: `JUPYTERHUB_CRYPT_KEY`: the JupyterHub crytographic key used to encrypt the `auth_state` when the authentication dictionary is persisted from the Authenticator to the Spawner using the `JupyterHub.auth_state_enabled = True` setting. Create a secure random string with the `openssl rand -hex 32` command from your preferred terminal. If you don't have access to the `openssl` command, any random value should suffice. **However, please use a secure value for Production!**
+    - `POSTGRES_DB`: the database name. Defaults to `jupyterhub`.
+    - `POSTGRES_USER`: the database's username. Defaults to `jupyterhub`.
+    - `POSTGRES_PASSWORD`: the database's password. Defaults to `password`.
+    - `POSTGRES_HOST`: the database host. Defaults to `postgres-hub`.
     - `OAUTH_CLIENT_ID`: the value of the OAuth2 client.
     - `OAUTH_CLIENT_SECRET`: secure random secret created by the OIDC/OAuth2 Authorization Server when setting up a the client.
     - `OAUTH_CALLBACK_URL`: defaults to ${JUPYTERHUB_HOST}/hub/oauth_callback which is the standard URL for Authenticators that inherit from the `OAuthenticator` class.

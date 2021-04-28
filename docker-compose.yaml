@@ -14,15 +14,15 @@ services:
     env_file:
       - .env
     command: >
-      jupyterhub -f /srv/jupyterhub/jupyterhub_config.py
+      jupyterhub --config /srv/jupyterhub/jupyterhub_config.py
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:rw
-      - ./jupyterhub/jupyterhub_config.py:/etc/jupyterhub/jupyterhub_config.py
+      - ./jupyterhub/jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
+    ports:
+      - 8000:8000
   postgres-hub:
     image: postgres
-    environment:
-      POSTGRES_DB: jupyterhub
-      POSTGRES_USER: jupyterhub
-      POSTGRES_PASSWORD: password
+    env_file:
+      - .env
     volumes:
        - pg-data-hub:/var/lib/postgresql/data

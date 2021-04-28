@@ -28,20 +28,26 @@ c.JupyterHub.tornado_settings = {
 # Upgrade the database automatically on start
 c.JupyterHub.upgrade_db = True
 
-# JupyterHub Postgres connection URI
-postgres_user = os.environ.get('POSTGRES_USER') or 'jupyterhub'
-postgres_password = os.environ.get('POSTGRES_PASSWORD') or 'password'
-postgres_host = os.environ.get('POSTGRES_HOST') or 'postgres'
-postgres_port = os.environ.get('POSTGRES_PORT') or '5432'
-postgres_db = os.environ.get('POSTGRES_DB') or 'jupyterhub'
-c.JupyterHub.db_url = f'postgres://{postgres_user}:{postgres_password}/{postgres_host}:{postgres_port}/{postgres_db}'
+# Database with Postgres
+c.JupyterHub.db_url = 'postgresql://jupyterhub:{password}@{host}/{db}'.format(
+    host=os.environ['POSTGRES_HOST'],
+    password=os.environ['POSTGRES_PASSWORD'],
+    db=os.environ['POSTGRES_DB'],
+)
 
 # Set the authenticator. Uncomment the GenericOAuthenticator to test authentication with OIDC/OAuth2.
 c.JupyterHub.authenticator_class = 'jupyterhub.auth.DummyAuthenticator'
 # c.JupyterHub.authenticator_class = GenericOAuthenticator
 
+# Set the spawner to the local process spawner
+c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
+
+# Custom logo file
+c.JupyterHub.logo_file = '/home/ubuntu/jhubui/extra-assets/images/illumidesk.png'
+
+# User info
 c.Authenticator.admin_users = {'foo'}
-c.Authenticator.auto_login = True
+c.Authenticator.auto_login = False
 c.Authenticator.allowed_users = {'foo', 'bizz', 'bazz'}
 
 # Verify TLS certificates.

@@ -7,4 +7,5 @@ RUN apt-get update \
 
 USER "${NB_UID}"
 
-RUN npm install npm install -g configurable-http-proxy
+RUN npm install -g configurable-http-proxy@^4.2.0 \
+ && rm -rf ~/.npm
