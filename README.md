@@ -63,20 +63,16 @@ docker-compose restart jupyterhub
 1. Update the `.env` file with your values:
     - `JUPYTERHUB_HOST`: the external facing JupyterHub host URL. Defaults to `http://localhost:8000`.
     - `JUPYTERHUB_CRYPT_KEY`: `JUPYTERHUB_CRYPT_KEY`: the JupyterHub crytographic key used to encrypt the `auth_state` when the authentication dictionary is persisted from the Authenticator to the Spawner using the `JupyterHub.auth_state_enabled = True` setting. Create a secure random string with the `openssl rand -hex 32` command from your preferred terminal. If you don't have access to the `openssl` command, any random value should suffice. **However, please use a secure value for Production!**
-    - `KEYCLOAK_INTERNAL_HOST`: the internal Keycloak service scheme, name and port. For example: `https://keycloak:8080`.
-    - `KEYCLOAK_EXTERNAL_HOST`: the external Keycloak scheme, host, and port. `https://127.0.0.1:8080`.
-    - `KEYCLOAK_REALM`: the Keycloak Realm name. Defaults to `master`.
-    - `OAUTH_CLIENT_ID`: the name of the Keycloak client configured with the Keycloak Realm, such as `illumidesk-hub`. Refer to the README in the keycloak folder for instructions on how to set up a keycloak realm.
-    - `OAUTH_CLIENT_SECRET`: secure random secret created by Keycloak when setting up a Keycloak client.
+    - `OAUTH_CLIENT_ID`: the value of the OAuth2 client.
+    - `OAUTH_CLIENT_SECRET`: secure random secret created by the OIDC/OAuth2 Authorization Server when setting up a the client.
     - `OAUTH_CALLBACK_URL`: defaults to ${JUPYTERHUB_HOST}/hub/oauth_callback which is the standard URL for Authenticators that inherit from the `OAuthenticator` class.
-    - `OAUTH2_AUTHORIZE_URL`: defaults to `${KEYCLOAK_EXTERNAL_HOST}/auth/realms/${KEYCLOAK_REALM}/protocol/openid-connect/auth`.
-    - `OAUTH2_TOKEN_URL`: defaults to `${KEYCLOAK_INTERNAL_HOST}/auth/realms/${KEYCLOAK_REALM}/protocol/openid-connect/token`.
+    - `OAUTH2_AUTHORIZE_URL`: defaults to `None`.
+    - `OAUTH2_TOKEN_URL`: defaults to `None`.
     - `OAUTH2_TLS_VERIFY`: defaults to `False`
-    - `GENERICAUTH_LOGIN_SERVICE_NAME`: defaults to `Keycloak`.
-    - `GENERICAUTH_USERDATA_URL`: defaults to `${KEYCLOAK_INTERNAL_HOST}/auth/realms/${KEYCLOAK_REALM}/protocol/openid-connect/userinfo`.
+    - `GENERICAUTH_LOGIN_SERVICE_NAME`: defaults to `Custom`.
+    - `GENERICAUTH_USERDATA_URL`: defaults to `None`.
     - `GENERICAUTH_USERDATA_METHOD`: defaults to `GET`
     - `GENERICAUTH_USERNAME_KEY`: defaults to `preferred_username`.S
-    - `KEYCLOAK_LOGOUT_URL`: defaults to `${KEYCLOAK_INTERNAL_HOST}/auth/realms/${KEYCLOAK_REALM}/protocol/openid-connect/logout`.
 
 ## License
 

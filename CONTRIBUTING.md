@@ -43,7 +43,7 @@ Then, navigate to `http://localhost:8888` to access your JupyterHub server.
 
 > Refer to [docker's documentation](https://docs.docker.com/engine/reference/run/) for additional `docker run ...` options.
 
-The `grader-setup`, `nginx`, and `keycloak` services also support the use of `docker run ...`.
+The `grader-setup-service` and `nginx` services also support the use of `docker run ...`.
 
 ## Development and Testing
 
