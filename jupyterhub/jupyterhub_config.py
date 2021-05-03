@@ -55,7 +55,7 @@ c.JupyterHub.template_paths = [
     ]
 
 # User info
-c.Authenticator.admin_users = {'foo'}
+c.Authenticator.admin_users = {'admin'}
 c.Authenticator.auto_login = True
 
 # Verify TLS certificates.
