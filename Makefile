@@ -22,10 +22,10 @@ HADOLINT="${HOME}/hadolint"
 
 help:
 # http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
-# http://github.com/jupyter/docker-stacks
-	@echo "illumidesk/docker-stacks"
+# http://github.com/illumidesk/illumidesk-containers
+	@echo "illumidesk/illumidesk-containers"
 	@echo "====================="
-	@echo "Replace % with a stack directory name (e.g., make build/base-notebook)"
+	@echo "Replace % with a stack directory name (e.g., make build/jupyterhub)"
 	@echo
 	@grep -E '^[a-zA-Z0-9_%/-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
