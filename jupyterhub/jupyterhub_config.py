@@ -57,7 +57,6 @@ c.JupyterHub.template_paths = [
 # User info
 c.Authenticator.admin_users = {'foo'}
 c.Authenticator.auto_login = True
-c.Authenticator.allowed_users = {}
 
 # Verify TLS certificates.
 if os.environ.get('OAUTH2_TLS_VERIFY') == 'True':
