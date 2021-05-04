@@ -32,8 +32,19 @@ COPY illumidesk-80.png /srv/jupyterhub/illumidesk-80.png
 COPY jupyterhub_config.py /srv/jupyterhub/
 COPY wait-for-postgres.sh /srv/jupyterhub/
 
+RUN mkdir -p /usr/local/share/jupyterhub/custom_templates
+WORKDIR /tmp
+RUN git clone http://github.com/illumidesk/jhubui
+WORKDIR /tmp/jhubui
+RUN cp -r /tmp/jhubui/templates/. /usr/local/share/jupyterhub/custom_templates \
+ && cp -r /tmp/jhubui/static/css/. /usr/local/share/jupyterhub/static/css/. \
+ && cp /tmp/jhubui/static/favicon.ico /usr/local/share/jupyterhub/static/favicon.ico
+
+WORKDIR /srv/jupyterhub
+
 CMD ["./wait-for-postgres.sh", "jupyterhub", "--config", "/srv/jupyterhub/jupyterhub_config.py"]
 
+# Copy logo as root, since sometimes we use this other location
 USER root
 
 COPY illumidesk-80.png /usr/local/share/jupyterhub/static/images/illumidesk-80.png

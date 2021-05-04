@@ -42,13 +42,21 @@ c.JupyterHub.authenticator_class = 'jupyterhub.auth.DummyAuthenticator'
 # Set the spawner to the local process spawner
 c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
 
+# Connect to end-user notebooks from anywhere
+c.Spawner.ip = '0.0.0.0'
+
 # Custom logo file
-c.JupyterHub.logo_file = '/home/ubuntu/jhubui/extra-assets/images/illumidesk.png'
+c.JupyterHub.logo_file = '/usr/local/share/jupyterhub/static/images/illumidesk-80.png'
+
+# Custom html templates
+c.JupyterHub.template_paths = [
+    '/usr/local/share/jupyterhub/custom_templates',
+    '/usr/local/share/jupyterhub/templates',
+    ]
 
 # User info
-c.Authenticator.admin_users = {'foo'}
-c.Authenticator.auto_login = False
-c.Authenticator.allowed_users = {'foo', 'bizz', 'bazz'}
+c.Authenticator.admin_users = {'admin'}
+c.Authenticator.auto_login = True
 
 # Verify TLS certificates.
 if os.environ.get('OAUTH2_TLS_VERIFY') == 'True':

@@ -11,3 +11,5 @@ USER "${NB_UID}"
 
 RUN npm install -g configurable-http-proxy@^4.2.0 --no-install-recommends \
  && rm -rf ~/.npm
+
+RUN python3 -m pip install --no-cache notebook==6.3.0
