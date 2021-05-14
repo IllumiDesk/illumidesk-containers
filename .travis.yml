@@ -11,7 +11,7 @@ services:
 
 jobs:
   include:
-    - stage: build-test-push
+    - stage: build-test
       install:
         - pip install --upgrade pip
         - make venv
@@ -19,9 +19,7 @@ jobs:
         - set -e
         - make build-all
         - make test
-      after_success:
-        - bash scripts/after_success.sh
 
 stages:
-  - name: build-test-push
+  - name: build-test
     if: branch = main
