@@ -4,7 +4,7 @@ set -e
 
 # no need to build and tag images for pull requests.
 docker_login () {
-  echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+  echo "${DOCKERHUB_TOKEN}" | docker login --username "${DOCKERHUB_USERNAME}" --password-stdin
 }
 
 tag_and_push () {
