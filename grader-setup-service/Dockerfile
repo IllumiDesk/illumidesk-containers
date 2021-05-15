@@ -14,7 +14,7 @@ RUN python -m pip install --no-cache-dir --upgrade pip \
  && pip install --no-cache-dir -r /tmp/requirements.txt
 
 # illumidesk package release
-ARG ILLUMIDESK_VERSION=3.2.0
+ARG ILLUMIDESK_VERSION=3.2.1
 
 # Application directory
 ENV APP_DIR=/illumidesk
