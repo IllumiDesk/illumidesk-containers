@@ -12,7 +12,7 @@ USER "${NB_UID}"
 
 ENV PATH="/home/${NB_USER}/.local/bin:${PATH}"
 
-ARG ILLUMIDESK_VERSION=3.1.0
+ARG ILLUMIDESK_VERSION=3.2.0
 
 # ensure pip is up to date
 RUN python3 -m pip install --no-cache-dir --upgrade pip
