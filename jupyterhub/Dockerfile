@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=jupyterhub/k8s-hub:0.11.1
+ARG BASE_IMAGE=jupyterhub/k8s-hub:0.11.1-n487.h254f914a
 FROM "${BASE_IMAGE}"
 
 USER root
@@ -12,7 +12,7 @@ USER "${NB_UID}"
 
 ENV PATH="/home/${NB_USER}/.local/bin:${PATH}"
 
-ARG ILLUMIDESK_VERSION=3.2.0
+ARG ILLUMIDESK_VERSION=3.2.1
 
 # ensure pip is up to date
 RUN python3 -m pip install --no-cache-dir --upgrade pip
