@@ -36,7 +36,7 @@ RUN mkdir -p /usr/local/share/jupyterhub/custom_templates
 WORKDIR /tmp
 RUN git clone http://github.com/illumidesk/jhubui
 WORKDIR /tmp/jhubui
-RUN cp -r /tmp/jhubui/templates/. /usr/local/share/jupyterhub/custom_templates \
+RUN cp -r /tmp/jhubui/templates/. /usr/local/share/jupyterhub/templates \
  && cp -r /tmp/jhubui/static/css/. /usr/local/share/jupyterhub/static/css/. \
  && cp /tmp/jhubui/static/favicon.ico /usr/local/share/jupyterhub/static/favicon.ico
 
